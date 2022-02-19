@@ -1,6 +1,8 @@
-import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda'
+import { APIGatewayProxyEventV2, APIGatewayProxyResultV2, CloudFrontRequestEvent } from 'aws-lambda'
 
-export async function myFunction(event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> {
+export async function myFunction(event: CloudFrontRequestEvent): Promise<APIGatewayProxyResultV2> {
+
+    console.log('event', JSON.stringify(event));
     
     return {
         statusCode: 200,
