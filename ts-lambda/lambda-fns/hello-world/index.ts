@@ -1,6 +1,6 @@
 import { CloudFrontRequestCallback, CloudFrontRequestEvent } from 'aws-lambda';
 
-const addOrSubtract = (operation, x, y) =>
+export const addOrSubtract = (operation: string, x: number, y: number) =>
     operation === "substract" ? x - y : x + y;
 
 // : Promise<CloudFrontRequestResult>
