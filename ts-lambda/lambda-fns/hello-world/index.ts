@@ -1,4 +1,4 @@
-import { APIGatewayProxyEventV2, APIGatewayProxyResultV2, CloudFrontRequestCallback, CloudFrontRequestEvent, CloudFrontRequestResult } from 'aws-lambda'
+import { CloudFrontRequestCallback, CloudFrontRequestEvent } from 'aws-lambda';
 
 // : Promise<CloudFrontRequestResult>
 export async function myFunction(event: CloudFrontRequestEvent, callback: CloudFrontRequestCallback) {
