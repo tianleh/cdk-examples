@@ -1,11 +1,11 @@
-import { APIGatewayProxyEventV2, APIGatewayProxyResultV2, CloudFrontRequestEvent } from 'aws-lambda'
+import { APIGatewayProxyEventV2, APIGatewayProxyResultV2, CloudFrontRequestCallback, CloudFrontRequestEvent, CloudFrontRequestResult } from 'aws-lambda'
 
-export async function myFunction(event: CloudFrontRequestEvent): Promise<APIGatewayProxyResultV2> {
+// : Promise<CloudFrontRequestResult>
+export async function myFunction(event: CloudFrontRequestEvent, callback: CloudFrontRequestCallback) {
 
     console.log('event', JSON.stringify(event));
-    
-    return {
-        statusCode: 200,
-        body: JSON.stringify({ message: 'hello from ts lambda' })
-    }
+
+    const request = event.Records[0].cf.request;
+    request.uri = request.uri.replace(/^\/ci\/...\//, '\/');
+    callback(null, request);
 }
