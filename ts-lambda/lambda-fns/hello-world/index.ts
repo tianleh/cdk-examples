@@ -1,5 +1,8 @@
 import { CloudFrontRequestCallback, CloudFrontRequestEvent } from 'aws-lambda';
 
+const addOrSubtract = (operation, x, y) =>
+    operation === "substract" ? x - y : x + y;
+
 // : Promise<CloudFrontRequestResult>
 export async function myFunction(event: CloudFrontRequestEvent, callback: CloudFrontRequestCallback) {
 
@@ -9,5 +12,8 @@ export async function myFunction(event: CloudFrontRequestEvent, callback: CloudF
     request.uri = request.uri.replace(/^\/ci\/...\//, '\/');
 
     console.log('request', JSON.stringify(request));
+
+    console.log("math", addOrSubtract('substract', 10, 2));
+
     callback(null, request);
 }
